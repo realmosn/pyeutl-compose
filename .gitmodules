@@ -1,0 +1,3 @@
+[submodule "pyeutl"]
+	path = pyeutl
+	url = https://github.com/jabrell/pyeutl
