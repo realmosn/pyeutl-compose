@@ -19,8 +19,5 @@ git submodule update
 docker-compose up -d --build
 ```
 
-# License
-MIT
-
 ---
 Disclaimer: This project was developed as part of my Bachelor's Thesis titled "Carbon Pricing and Firm Size: Differential Impacts of EU ETS Phase IV Reforms on SMEs and Large Firms in Germany’s Emission-Intensive Industries".
