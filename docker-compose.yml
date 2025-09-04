@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: randompostgrespass123
+      POSTGRES_DB: eutl
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: randomemail@example.com
+      PGADMIN_DEFAULT_PASSWORD: randompgadminpass456
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  pyeutl:
+    build:
+      context: .
+      dockerfile: Dockerfile.pyeutl
+    command: sleep infinity
+    depends_on:
+      - db
+    volumes:
+      - ./pyeutl:/opt/pyeutl
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=randompostgrespass123
+      - POSTGRES_DB=eutl
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
